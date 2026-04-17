@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend
+    container_name: search-engine-backend
+    ports:
+      - "8080:8080"
+    environment:
+      - GCP_PROJECT_ID=${GCP_PROJECT_ID:-my-gcp-project}
+      - BIGTABLE_INSTANCE_ID=${BIGTABLE_INSTANCE_ID:-my-bigtable-instance}
+    # Depends on nothing for now; uses in‑memory H2 DB. In production you would replace with Cloud SQL / Bigtable.
+    # For local Pub/Sub emulation you could add a pubsub emulator container later.
+
+# Placeholder for future services (frontend, pubsub emulator, etc.)
+#  frontend:
+#    build:
+#      context: ./frontend
+#    ports:
+#      - "3000:3000"
+#    depends_on:
+#      - backend

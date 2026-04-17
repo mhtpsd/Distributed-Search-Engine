@@ -1,0 +1,36 @@
+# Run once in the project root
+cat > .gitignore <<'EOF'
+# Maven / Java
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+.idea/
+*.log
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.DS_Store
+
+# Docker
+docker-compose.override.yml
+Dockerfile
+*.dockerfile
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+crash.log
+
+# OS / editor artefacts
+Thumbs.db
+*.swp
+EOF
