@@ -199,20 +199,6 @@ Distributed-Search-Engine/
 
 ---
 
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository.
-2. Create a feature branch (`git checkout -b feat/awesome-feature`).
-3. Write tests for your changes.
-4. Ensure the CI pipeline passes.
-5. Open a Pull Request with a clear description of the change.
-
-Read the full [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on code style, commit messages, and release process.
-
----
-
 ## License
 
 Distributed Search Engine is released under the **MIT License**. See the [LICENSE](LICENSE) file for details.
@@ -221,9 +207,9 @@ Distributed Search Engine is released under the **MIT License**. See the [LICENS
 
 ## Contact
 
-- **Author**: Your Name – [your.email@example.com](mailto:your.email@example.com)
-- **GitHub**: https://github.com/yourusername/Distributed-Search-Engine
-- **LinkedIn**: https://linkedin.com/in/yourprofile
+- **Author**: Mohit – [mohitmanoj1704@gmail.com](mailto:mohitmanoj1704@gmail.com)
+- **GitHub**: https://github.com/mhtpsd
+- **LinkedIn**: https://www.linkedin.com/in/mohitprasadofficial/
 
 ---
 
