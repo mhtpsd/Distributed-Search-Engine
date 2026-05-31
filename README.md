@@ -1,7 +1,7 @@
 # Distributed Search Engine
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)  
-[![Build Status](https://img.shields.io/github/actions/workflow/status/yourusername/Distributed-Search-Engine/ci.yml?branch=main)](https://github.com/yourusername/Distributed-Search-Engine/actions)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/mhtpsd/Distributed-Search-Engine/ci.yml?branch=main)](https://github.com/mhtpsd/Distributed-Search-Engine/actions)
 
 ---
 
@@ -20,6 +20,8 @@
 - [Project Structure](#project-structure)
 - [Contributing](#contributing)
 - [License](#license)
+- [Security](#security)
+- [Development vs Production](#development-vs-production)
 - [Contact](#contact)
 
 ---
@@ -105,7 +107,7 @@ The diagram illustrates the event‑driven pipeline: the **Crawler** publishes r
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/Distributed-Search-Engine.git
+git clone https://github.com/mhtpsd/Distributed-Search-Engine.git
 cd Distributed-Search-Engine
 
 # Backend (Java services)
@@ -202,6 +204,35 @@ Distributed-Search-Engine/
 ## License
 
 Distributed Search Engine is released under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+---
+
+## Security
+
+- **Backend Cloud Run service** is protected by IAM authentication — it does **not** allow unauthenticated access. Callers must present a valid Google ID token (e.g. a service account with the `roles/run.invoker` role).
+- **Secrets are injected via environment variables**. In production, values are sourced from GCP Secret Manager and surfaced as environment variables in Cloud Run — they are never baked into images or committed to source control.
+- **Never commit credentials** (API keys, service account JSON, database passwords) to this repository.
+
+---
+
+## Development vs Production
+
+This project uses Spring Boot profiles to separate local and production configuration:
+
+| Profile | Description |
+|---------|-------------|
+| `dev` (default) | Uses an in-memory H2 database. No GCP credentials needed. Start with `mvn spring-boot:run`. |
+| `prod` | Uses PostgreSQL. All sensitive values (`DB_URL`, `DB_USERNAME`, `DB_PASSWORD`) must be injected as environment variables — typically via GCP Secret Manager in Cloud Run. |
+
+Set the active profile via the `SPRING_PROFILES_ACTIVE` environment variable:
+
+```bash
+# Local development (default)
+mvn spring-boot:run
+
+# Production simulation
+SPRING_PROFILES_ACTIVE=prod DB_URL=... DB_USERNAME=... DB_PASSWORD=... mvn spring-boot:run
+```
 
 ---
 

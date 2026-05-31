@@ -6,6 +6,15 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  # Remote state backend using GCS.
+  # The bucket must be created before running `terraform init`.
+  # Recommended bucket name: "${var.gcp_project_id}-tfstate"
+  # Uncomment and set the bucket name to enable remote state:
+  # backend "gcs" {
+  #   bucket = "<your-project-id>-tfstate"
+  #   prefix = "distributed-search-engine/state"
+  # }
 }
 
 provider "google" {
@@ -42,7 +51,7 @@ resource "google_bigtable_instance" "search_engine" {
     num_nodes    = 3
     storage_type = "SSD"
   }
-  deletion_protection = false
+  deletion_protection = true
 }
 
 # Bigtable tables
