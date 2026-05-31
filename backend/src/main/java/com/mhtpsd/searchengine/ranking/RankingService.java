@@ -119,13 +119,15 @@ public class RankingService {
         for (Page p : allPages) {
             Set<Long> targets = new HashSet<>();
             String content = p.getContent();
-            int delimIdx = content.indexOf("---LINKS---");
-            if (delimIdx != -1) {
-                String linksPart = content.substring(delimIdx + "---LINKS---".length()).trim();
-                for (String link : linksPart.split("\\n")) {
-                    link = link.trim();
-                    if (!link.isEmpty() && urlToId.containsKey(link)) {
-                        targets.add(urlToId.get(link));
+            if (content != null) {
+                int delimIdx = content.indexOf("---LINKS---");
+                if (delimIdx != -1) {
+                    String linksPart = content.substring(delimIdx + "---LINKS---".length()).trim();
+                    for (String link : linksPart.split("\\n")) {
+                        link = link.trim();
+                        if (!link.isEmpty() && urlToId.containsKey(link)) {
+                            targets.add(urlToId.get(link));
+                        }
                     }
                 }
             }
